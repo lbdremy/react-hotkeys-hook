@@ -26,6 +26,7 @@ export type Options = {
   scope?: string; // Scope. Currently not doing anything.
   keyup?: boolean; // Trigger on keyup event? (Default: undefined)
   keydown?: boolean; // Trigger on keydown event? (Default: true)
+  capture?: boolean; // A boolean value indicating that events of this type will be dispatched to the registered listener before being dispatched to any EventTarget beneath it in the DOM tree. If not specified, defaults to false.
 };
 
 export function useHotkeys<T extends Element>(keys: string, callback: KeyHandler, options?: Options): React.MutableRefObject<T | null>;
@@ -45,6 +46,7 @@ export function useHotkeys<T extends Element>(keys: string, callback: KeyHandler
     filterPreventDefault = true,
     enabled = true,
     enableOnContentEditable = false,
+    capture = false,
   } = options as Options || {};
   const ref = useRef<T | null>(null);
 
